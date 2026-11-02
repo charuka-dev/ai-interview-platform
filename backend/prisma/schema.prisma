@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  roleTarget   String?
+  createdAt    DateTime @default(now())
+
+  resumes     Resume[]
+  jobPostings JobPosting[]
+  sessions    InterviewSession[]
+  roadmap     ImprovementRoadmap[]
+}
+
+model Resume {
+  id               String   @id @default(uuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  fileKey          String   // S3 object key (never the raw URL)
+  originalFilename String
+  mimeType         String
+  parsedSkills     Json?
+  parsedExperience Json?
+  parsedRawText    String?  @db.Text
+  uploadedAt       DateTime @default(now())
+
+  sessions InterviewSession[]
+}
+
+model JobPosting {
+  id                  String   @id @default(uuid())
+  userId              String
+  user                User     @relation(fields: [userId], references: [id])
+  jobRole             String
+  jobDescription      String   @db.Text
+  parsedRequirements  Json?
+  createdAt           DateTime @default(now())
+
+  sessions InterviewSession[]
+}
+
+model InterviewSession {
+  id              String    @id @default(uuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id])
+  resumeId        String?
+  resume          Resume?   @relation(fields: [resumeId], references: [id])
+  jobPostingId    String?
+  jobPosting      JobPosting? @relation(fields: [jobPostingId], references: [id])
+  vapiCallId      String?   @unique
+  vapiAssistantId String?
+  rubricName      String?   // Which rubric file was used
+  status          String    @default("created") // created | in_progress | processing | completed | failed
+
+  startedAt   DateTime?
+  endedAt     DateTime?
+  durationSec Int?
+
+  transcript Transcript?
+  score      Score?
+
+  createdAt DateTime @default(now())
+}
+
+model Transcript {
+  id           String           @id @default(uuid())
+  sessionId    String           @unique
+  session      InterviewSession @relation(fields: [sessionId], references: [id])
+  fullText     String           @db.Text
+  recordingKey String?          // S3 object key for the recording
+  createdAt    DateTime         @default(now())
+}
+
+model Score {
+  id                String           @id @default(uuid())
+  sessionId         String           @unique
+  session           InterviewSession @relation(fields: [sessionId], references: [id])
+  technicalAccuracy Int
+  communication     Int
+  confidence        Int
+  reasoning         Json             // Per-dimension reasoning from Gemini
+  improvementTips   Json
+  createdAt         DateTime         @default(now())
+}
+
+model ImprovementRoadmap {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  generatedAt DateTime @default(now())
+  focusAreas  Json
+  resources   Json
+}

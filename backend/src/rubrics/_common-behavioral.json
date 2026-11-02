@@ -1,0 +1,29 @@
+{
+  "role": "common",
+  "core_topics": [
+    "Self-introduction and background",
+    "Strengths and weaknesses",
+    "Teamwork and collaboration",
+    "Leadership and initiative",
+    "Conflict resolution",
+    "Handling failure or mistakes",
+    "Career motivation and goals"
+  ],
+  "scoring_weights": {
+    "technical_accuracy": 0.0,
+    "communication": 0.60,
+    "confidence": 0.40
+  },
+  "red_flags": [],
+  "calibration_examples": [],
+  "weight_in_interview": 0.25,
+  "suggested_questions": [
+    "Tell me about yourself and your background.",
+    "What would you say are your greatest strengths?",
+    "Describe a time you worked in a team project — what was your role?",
+    "Have you ever led a group or project? How did you handle it?",
+    "Tell me about a disagreement with a teammate and how you resolved it.",
+    "Describe a mistake you made on a project and what you learned from it.",
+    "Why are you interested in this role, and where do you see yourself growing?"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "role": "Mobile App Developer",
+  "core_topics": [
+    "Native vs cross-platform tradeoffs (Swift/Kotlin vs React Native/Flutter)",
+    "Mobile UI lifecycle and state management",
+    "Offline-first data sync strategies",
+    "Push notifications and background tasks",
+    "App store deployment and versioning",
+    "Performance and battery optimisation",
+    "Mobile-specific security (secure storage, biometrics)"
+  ],
+  "scoring_weights": { "technical_accuracy": 0.5, "communication": 0.25, "confidence": 0.25 },
+  "red_flags": [
+    "Cannot explain app lifecycle states",
+    "No understanding of offline data handling",
+    "Unaware of platform-specific UI guidelines",
+    "Cannot describe app store submission process",
+    "Ignores battery/performance impact of background work"
+  ],
+  "calibration_examples": [
+    { "answer_quality": "strong", "expected_score_range": [80, 100] },
+    { "answer_quality": "weak", "expected_score_range": [0, 40] }
+  ],
+  "suggested_questions": [
+    "How would you design offline support for an app that needs to sync data when connectivity returns?",
+    "Walk me through the lifecycle of a mobile app from launch to background to termination.",
+    "How do you handle secure storage of sensitive data like auth tokens on a mobile device?",
+    "Describe your approach to optimising battery usage for a location-tracking feature.",
+    "What's your process for getting an app through app store review?"
+  ]
+}

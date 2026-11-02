@@ -1,0 +1,52 @@
+{
+  "role": "Frontend Developer - React",
+  "core_topics": [
+    "React component lifecycle and hooks (useEffect, useCallback, useMemo)",
+    "State management patterns (Context API, Redux, Zustand, Jotai)",
+    "Performance optimisation (memoization, code splitting, lazy loading)",
+    "Accessibility (ARIA roles, keyboard navigation, screen reader support)",
+    "TypeScript with React (generics, discriminated unions, strict typing)",
+    "CSS architecture (CSS Modules, styled-components, design tokens)",
+    "Testing (React Testing Library, Vitest/Jest, mocking fetch)",
+    "Build tooling (Vite, Webpack, tree shaking, bundle analysis)"
+  ],
+  "scoring_weights": {
+    "technical_accuracy": 0.45,
+    "communication": 0.30,
+    "confidence": 0.25
+  },
+  "red_flags": [
+    "Cannot explain why a component is re-rendering unexpectedly",
+    "Uses useEffect to synchronise state that could be derived",
+    "No awareness of accessibility requirements",
+    "Cannot describe how to measure and improve Core Web Vitals",
+    "Treats TypeScript as just 'JavaScript with types' without understanding structural typing",
+    "Cannot explain the difference between controlled and uncontrolled components"
+  ],
+  "calibration_examples": [
+    {
+      "answer_quality": "strong",
+      "description": "Discusses tradeoffs between approaches, mentions performance implications, references real problems they've solved.",
+      "expected_score_range": [80, 100]
+    },
+    {
+      "answer_quality": "adequate",
+      "description": "Knows the concepts but cannot apply them to novel problems. Good at common patterns only.",
+      "expected_score_range": [50, 79]
+    },
+    {
+      "answer_quality": "weak",
+      "description": "Relies on tutorials/cargo-culting without understanding the underlying reasons. Cannot debug under pressure.",
+      "expected_score_range": [0, 49]
+    }
+  ],
+  "suggested_questions": [
+    "Explain the rules of hooks. Why do they exist, and what happens if you break them?",
+    "You have a list of 10,000 items rendered in React. It's janky. Walk me through your optimisation approach.",
+    "What's the difference between useCallback and useMemo? Give me a case where using useMemo would be a mistake.",
+    "How would you implement a global notification/toast system in a React app without a library?",
+    "Describe how you'd structure state for a multi-step checkout form with validation.",
+    "What does React's reconciliation algorithm do, and how do keys affect it?",
+    "Walk me through how you'd make a data table accessible to keyboard and screen reader users."
+  ]
+}
